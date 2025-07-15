@@ -9,15 +9,15 @@ from .models import Event
 
 @login_required(login_url='login')
 def home(request):
-    events = Event.objects.filter()
+    events = Event.objects.filter(user=request.user)
 
     search = request.GET.get('event_query')
 
     if search in ['Past', 'Yuqori', "O‘rta"]:
-        events = Event.objects.filter(priority__icontains=search)
+        events = Event.objects.filter(priority__icontains=search, user=request.user)
 
     elif search:
-        events = Event.objects.filter(title__icontains=search)
+        events = Event.objects.filter(title__icontains=search, user=request.user)
 
     context = {
         "events": events,
