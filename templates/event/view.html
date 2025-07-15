@@ -1,0 +1,30 @@
+{% extends 'event/base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+    <main class="container py-5">
+
+        <!-- Blog Detail Card -->
+        <div class="card mb-4 shadow-sm border-0 rounded-4">
+            <div class="card-header">
+                <h1 class="card-title">{{ event.title }}</h1>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">Description: {{ event.description }}</h1>
+                <div class="mb-3 text-muted">
+                    <i class="bi bi-calendar-date"></i> {{ event.created_at|timesince }} ago &bull;
+                    <span class="badge bg-secondary">{{ event.pr }}</span>
+                </div>
+                <h1 class="card">Priority: {{ event.priority.capitalize }}</h1>
+
+                <div class="card-text lead">
+                    {{ event.content|safe }}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
