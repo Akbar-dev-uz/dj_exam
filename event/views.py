@@ -83,6 +83,7 @@ def view(request, event_id):
 
 
 def delete(request, event_id):
-    blog = get_object_or_404(Event, id=event_id, author=request.user)
-    blog.delete()
+    event = get_object_or_404(Event, id=event_id, user=request.user)
+    event.delete()
+    messages.success(request, 'Событие успешно удалено')
     return redirect('home')
